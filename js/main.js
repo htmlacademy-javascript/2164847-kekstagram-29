@@ -1,5 +1,6 @@
-import { messages, names } from './data.js';
 import { getRandomInt } from './util.js';
+import { messages, names } from './data.js';
+import { renderPictures } from './renderPictures.js';
 
 let photos = [];
 
@@ -26,4 +27,4 @@ for(let i = 1; i <= 25; i++) {
     });
 }
 
-console.log(photos);
+renderPictures(photos);
