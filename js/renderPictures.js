@@ -1,9 +1,12 @@
+import { openModal } from './drawModal.js'
+
 const template = document.getElementById("picture");
 const container = document.querySelector('.pictures');
 
 export const renderPictures = (photos = []) => {
   for (let i = 0; i < photos.length; i++) {
     const photo = photos[i];
+    const wrapper = document.createElement('div');
     const item = template.content.cloneNode(true);
 
       item
@@ -22,6 +25,13 @@ export const renderPictures = (photos = []) => {
         .querySelector('.picture__likes')
         .textContent = photo.likes;
 
-      container.append(item);
+      wrapper.addEventListener('click', e => {
+        e.preventDefault();
+        openModal(photo);
+      });
+
+      wrapper.appendChild(item)
+
+      container.appendChild(wrapper);
   }
 }

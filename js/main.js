@@ -1,6 +1,7 @@
 import { getRandomInt } from './util.js';
 import { messages, names } from './data.js';
 import { renderPictures } from './renderPictures.js';
+import { closeModal } from './drawModal.js';
 
 let photos = [];
 
@@ -28,3 +29,9 @@ for(let i = 1; i <= 25; i++) {
 }
 
 renderPictures(photos);
+
+document
+  .getElementById('picture-cancel')
+  .addEventListener('click', e => {
+    closeModal();
+  })
