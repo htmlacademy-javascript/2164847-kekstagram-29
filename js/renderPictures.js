@@ -1,6 +1,6 @@
-import { openModal } from './drawModal.js'
+import { openModal } from './drawModal.js';
 
-const template = document.getElementById("picture");
+const template = document.getElementById('picture');
 const container = document.querySelector('.pictures');
 
 export const renderPictures = (photos = []) => {
@@ -9,29 +9,29 @@ export const renderPictures = (photos = []) => {
     const wrapper = document.createElement('div');
     const item = template.content.cloneNode(true);
 
-      item
-        .querySelector('.picture__img')
-        .src = photo.url;
+    item
+      .querySelector('.picture__img')
+      .src = photo.url;
 
-      item
-        .querySelector('.picture__img')
-        .alt = photo.description;
+    item
+      .querySelector('.picture__img')
+      .alt = photo.description;
 
-      item
-        .querySelector('.picture__comments')
-        .textContent = photo.comments.length;
+    item
+      .querySelector('.picture__comments')
+      .textContent = photo.comments.length;
 
-      item
-        .querySelector('.picture__likes')
-        .textContent = photo.likes;
+    item
+      .querySelector('.picture__likes')
+      .textContent = photo.likes;
 
-      wrapper.addEventListener('click', e => {
-        e.preventDefault();
-        openModal(photo);
-      });
+    wrapper.addEventListener('click', (e) => {
+      e.preventDefault();
+      openModal(photo);
+    });
 
-      wrapper.appendChild(item)
+    wrapper.appendChild(item);
 
-      container.appendChild(wrapper);
+    container.appendChild(wrapper);
   }
-}
+};
