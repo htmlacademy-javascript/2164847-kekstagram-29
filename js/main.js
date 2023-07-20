@@ -1,3 +1,4 @@
+import './uploadForm.js';
 import { getRandomInt } from './util.js';
 import { messages, names } from './data.js';
 import { renderPictures } from './renderPictures.js';
@@ -32,6 +33,5 @@ renderPictures(photos);
 
 document
   .getElementById('picture-cancel')
-  .addEventListener('click', () => {
-    closeModal();
-  });
+  .addEventListener('click', closeModal);
+

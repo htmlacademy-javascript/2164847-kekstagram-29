@@ -2,9 +2,9 @@ let a, b, c;
 
 function checkLength (str, l) {
   if (str.length <= l) {
-      return true
+    return true;
   }
-  return false
+  return false;
 
 }
 
@@ -15,22 +15,18 @@ b = checkLength('проверяемая строка', 18); // true
 // Строка длиннее 10 символов
 c = checkLength('проверяемая строка', 10); // false
 
-console.log(a);
-console.log(b);
-console.log(c);
-
 function palindrome(str = '') {
   let x = str
-      .toLowerCase()
-      .split(' ')
-      .join('');
+    .toLowerCase()
+    .split(' ')
+    .join('');
   let y = x
-      .split('')
-      .reverse()
-      .join('');
+    .split('')
+    .reverse()
+    .join('');
 
   if (x == y) {
-      return true
+    return true
   }
 
   return false;
@@ -42,11 +38,6 @@ a = palindrome('топот'); // true
 b = palindrome('ДовОд'); // true
 // Это не палиндром
 c = palindrome('Кекс');  // false
-
-
-console.log(a);
-console.log(b);
-console.log(c);
 
 function calcMeetingTime(startWork = '', endWork = '', startMeeting = '', meetingDuration = 0) {
   let [
