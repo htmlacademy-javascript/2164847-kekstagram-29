@@ -3,6 +3,7 @@ import { createState } from './state.js';
 const MAX_SCALE = 1;
 const MIN_SCALE = 0.25;
 
+const form = document.getElementById('upload-select-image');
 const slider = document.querySelector('.effect-level__slider');
 const filters = document.querySelectorAll('.effects__radio');
 const upload = document.querySelector('.img-upload__input');
@@ -11,7 +12,6 @@ const smaller = document.querySelector('.scale__control--smaller');
 const bigger = document.querySelector('.scale__control--bigger');
 const scalewrapper = document.querySelector('.scale__control--value');
 const sliderWrapper = document.querySelector('.img-upload__effect-level');
-
 
 
 const formState = createState({
@@ -145,4 +145,18 @@ document
 .getElementById('upload-cancel')
 .addEventListener('click', () => {
   formState.reset();
+});
+
+
+const pristine = new Pristine(form);
+
+form.addEventListener('submit', function (e) {
+
+   const valid = pristine.validate();
+
+   if(! valid) {
+    e.preventDefault();
+    console.log("Форма заполнена некорректно");
+   }
+
 });
