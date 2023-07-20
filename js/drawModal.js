@@ -70,8 +70,8 @@ export function closeModal() {
 function renderComments(comments = [], limit = 0) {
   return `
     ${comments
-        .slice(0, limit)
-        .map(comment => `
+.slice(0, limit)
+.map(comment => `
           <li class="social__comment">
               <img
                   src="${comment.url}"
@@ -84,8 +84,8 @@ function renderComments(comments = [], limit = 0) {
               </p>
           </li>
         `)
-        .join('')
-    }
+    .join('')
+}
 `
 }
 
