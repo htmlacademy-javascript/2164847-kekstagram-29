@@ -12,7 +12,7 @@ const smaller = document.querySelector('.scale__control--smaller');
 const bigger = document.querySelector('.scale__control--bigger');
 const scalewrapper = document.querySelector('.scale__control--value');
 const sliderWrapper = document.querySelector('.img-upload__effect-level');
-
+const effectLevelInput = document.querySelector('.effect-level__value');
 
 const formState = createState({
   scale: 1,
@@ -26,6 +26,7 @@ function uploadPreviewRender(state, prevState) {
   preview.src = state.imageUrl;
 
   if(state.filter !== prevState.filter) {
+    state.intensity = 100;
     slider.noUiSlider.set(100)
   }
 
@@ -34,6 +35,8 @@ function uploadPreviewRender(state, prevState) {
   } else {
     sliderWrapper.classList.remove('hidden');
   }
+
+  effectLevelInput.value = state.intensity;
 
   switch(state.filter) {
     case 'none':
@@ -57,6 +60,7 @@ function uploadPreviewRender(state, prevState) {
     default:
       break;
   }
+
 
   preview.style.transform = `scale(${state.scale})`;
   scalewrapper.value = `${state.scale * 100}%`;
