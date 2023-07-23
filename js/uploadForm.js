@@ -1,4 +1,5 @@
 import { createState } from './state.js';
+import { sendUploadForm } from './api.js';
 
 const MAX_SCALE = 1;
 const MIN_SCALE = 0.25;
@@ -154,13 +155,14 @@ document
 
 const pristine = new Pristine(form);
 
-form.addEventListener('submit', function (e) {
+form.addEventListener('submit', async function (e) {
+  e.preventDefault();
+  const valid = pristine.validate();
 
-   const valid = pristine.validate();
-
-   if(! valid) {
-    e.preventDefault();
+  if(valid) {
+    await sendUploadForm(form);
+    formState.reset();
+  } else {
     console.log("Форма заполнена некорректно");
-   }
-
+  }
 });
