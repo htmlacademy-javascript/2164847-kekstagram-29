@@ -74,7 +74,7 @@ function renderComments(comments = [], limit = 0) {
 .map(comment => `
           <li class="social__comment">
               <img
-                  src="${comment.url}"
+                  src="${comment.avatar}"
                   alt="${comment.name}"
                   width="35" height="35"
                   class="social__picture"
