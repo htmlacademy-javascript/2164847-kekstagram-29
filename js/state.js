@@ -10,10 +10,10 @@ export function createState(initialState = {}, render) {
       if(typeof props === 'function') {
         newState = props(this);
       }
-      for(let prop in newState) {
-        this[prop] = newState[prop]
+      for(const prop in newState) {
+        this[prop] = newState[prop];
       }
       render(this, prevState);
     },
-  }
+  };
 }
