@@ -48,14 +48,14 @@ export function openModal(photo) {
     modal
       .querySelector('.social__comment-count')
       .innerHTML = renderCommentsCount(commentsLimit, photo.comments.length);
-  }
+  };
 
   commentsLoader.addEventListener('click', handler);
   document
     .getElementById('picture-cancel')
     .addEventListener('click', () => {
       commentsLoader.removeEventListener('click', handler);
-    })
+    });
 
   modal.classList.remove('hidden');
   document.body.classList.add('modal-open');
@@ -70,8 +70,8 @@ export function closeModal() {
 function renderComments(comments = [], limit = 0) {
   return `
     ${comments
-.slice(0, limit)
-.map(comment => `
+    .slice(0, limit)
+    .map((comment) => `
           <li class="social__comment">
               <img
                   src="${comment.avatar}"
@@ -86,10 +86,14 @@ function renderComments(comments = [], limit = 0) {
         `)
     .join('')
 }
-`
+`;
 }
 
 
 function renderCommentsCount(from, to) {
-  return `${from} из <span class="comments-count">${to}</span> комментариев`
+  return `${from} из <span class="comments-count">${to}</span> комментариев`;
 }
+
+document
+  .getElementById('picture-cancel')
+  .addEventListener('click', closeModal);

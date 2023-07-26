@@ -4,10 +4,17 @@ const template = document.getElementById('picture');
 const container = document.querySelector('.pictures');
 
 export const renderPictures = (photos = []) => {
+  document
+    .querySelectorAll('.picture-wrapper-class')
+    .forEach((photo) => {
+      photo.remove();
+    });
   for (let i = 0; i < photos.length; i++) {
     const photo = photos[i];
     const wrapper = document.createElement('div');
     const item = template.content.cloneNode(true);
+
+    wrapper.classList.add('picture-wrapper-class');
 
     item
       .querySelector('.picture__img')

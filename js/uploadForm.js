@@ -28,7 +28,7 @@ function uploadPreviewRender(state, prevState) {
 
   if(state.filter !== prevState.filter) {
     state.intensity = 100;
-    slider.noUiSlider.set(100)
+    slider.noUiSlider.set(100);
   }
 
   if(state.filter === 'none') {
@@ -41,7 +41,7 @@ function uploadPreviewRender(state, prevState) {
 
   switch(state.filter) {
     case 'none':
-      preview.style.filter = `none`;
+      preview.style.filter = 'none';
       break;
     case 'chrome':
       preview.style.filter = `grayscale(${state.intensity / 100})`;
@@ -81,16 +81,16 @@ function uploadPreviewRender(state, prevState) {
 
 
 noUiSlider.create(slider, {
-    start: formState.intensity,
-    connect: 'lower',
-    range: {
-        'min': 0,
-        'max': 100
-    },
+  start: formState.intensity,
+  connect: 'lower',
+  range: {
+    'min': 0,
+    'max': 100
+  },
 });
 
-slider.noUiSlider.on('update', function([ stringValue ]) {
-  const intValue = parseInt(stringValue);
+slider.noUiSlider.on('update', ([ stringValue ]) => {
+  const intValue = parseInt(stringValue, 10);
 
   if(intValue !== formState.intensity) {
     formState.update({
@@ -99,16 +99,16 @@ slider.noUiSlider.on('update', function([ stringValue ]) {
   }
 });
 
-filters.forEach(filter => {
+filters.forEach((filter) => {
   filter.addEventListener('change', (e) => {
     formState.update({
       filter: e.target.value
-    })
+    });
   });
 });
 
-smaller.addEventListener('click', function() {
-  formState.update(prev => {
+smaller.addEventListener('click', () => {
+  formState.update((prev) => {
     let newScale = prev.scale - 0.25;
     if(newScale < MIN_SCALE) {
       newScale = MIN_SCALE;
@@ -116,12 +116,12 @@ smaller.addEventListener('click', function() {
     return {
       ...prev,
       scale: newScale
-    }
+    };
   });
 });
 
-bigger.addEventListener('click', function() {
-  formState.update(prev => {
+bigger.addEventListener('click', () => {
+  formState.update((prev) => {
     let newScale = prev.scale + 0.25;
     if(newScale > MAX_SCALE) {
       newScale = MAX_SCALE;
@@ -129,11 +129,11 @@ bigger.addEventListener('click', function() {
     return {
       ...prev,
       scale: newScale
-    }
+    };
   });
 });
 
-upload.addEventListener('change', function(e) {
+upload.addEventListener('change', () => {
   const [ file ] = upload.files;
 
   if (! file) {
@@ -146,23 +146,20 @@ upload.addEventListener('change', function(e) {
   });
 });
 
-document
-.getElementById('upload-cancel')
-.addEventListener('click', () => {
-  formState.reset();
-});
+document.getElementById('upload-cancel')
+  .addEventListener('click', () => {
+    formState.reset();
+  });
 
 
 const pristine = new Pristine(form);
 
-form.addEventListener('submit', async function (e) {
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
   const valid = pristine.validate();
 
   if(valid) {
     await sendUploadForm(form);
     formState.reset();
-  } else {
-    console.log("Форма заполнена некорректно");
   }
 });
