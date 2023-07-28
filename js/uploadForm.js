@@ -37,7 +37,7 @@ function uploadPreviewRender(state, prevState) {
     sliderWrapper.classList.remove('hidden');
   }
 
-  effectLevelInput.value = state.intensity;
+  effectLevelInput.value = state.intensity * 100;
 
   switch(state.filter) {
     case 'none':
