@@ -33,3 +33,23 @@ export function getRandomItems(arr = [], count = 5) {
   }
   return result;
 }
+
+export function debounce(f, ms) {
+
+  let isCooldown = false;
+
+  return function() {
+    if (isCooldown) {
+      return;
+    }
+
+    f.apply(this, arguments);
+
+    isCooldown = true;
+
+    setTimeout(() =>{
+      isCooldown = false;
+    }, ms);
+  };
+
+}
