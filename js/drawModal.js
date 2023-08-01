@@ -38,10 +38,13 @@ export function openModal(photo) {
 
   const handler = function() {
     commentsLimit += 5;
+
+
     if(commentsLimit >= photo.comments.length) {
       commentsLimit = photo.comments.length;
       this.classList.add('hidden');
     }
+
     modal
       .querySelector('.social__comments')
       .innerHTML = renderComments(photo.comments, commentsLimit);
@@ -79,9 +82,7 @@ function renderComments(comments = [], limit = 0) {
                   width="35" height="35"
                   class="social__picture"
                 >
-              <p class="social__text">
-                ${comment.message}
-              </p>
+              <p class="social__text">${comment.message}</p>
           </li>
         `)
     .join('')
@@ -97,3 +98,16 @@ function renderCommentsCount(from, to) {
 document
   .getElementById('picture-cancel')
   .addEventListener('click', closeModal);
+
+document.addEventListener('keydown', (evt) => {
+  evt = evt || window.event;
+  let isEscape = false;
+  if ('key' in evt) {
+    isEscape = (evt.key === 'Escape' || evt.key === 'Esc');
+  } else {
+    isEscape = (evt.keyCode === 27);
+  }
+  if (isEscape) {
+    closeModal();
+  }
+});

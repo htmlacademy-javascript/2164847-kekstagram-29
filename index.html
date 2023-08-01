@@ -31,7 +31,7 @@
       <section class="img-upload">
         <div class="img-upload__wrapper">
           <h2 class="img-upload__title  visually-hidden">Загрузка фотографии</h2>
-          <form class="img-upload__form" id="upload-select-image" autocomplete="off" method="post" enctype="multipart/form-data" action="https://29.javascript.pages.academy/kekstagram">
+          <form class="img-upload__form" id="upload-select-image" autocomplete="off" method="post" enctype="multipart/form-data" action="https://29.javascript.pages.academy/kekstagram" novalidate>
 
             <!-- Изначальное состояние поля для загрузки изображения -->
             <fieldset class="img-upload__start">
@@ -116,11 +116,23 @@
 
                 <!-- Добавление хэш-тегов и комментария к изображению -->
                 <fieldset class="img-upload__text text">
-                  <div class="img-upload__field-wrapper">
-                    <input class="text__hashtags" name="hashtags" placeholder="#ХэшТег" pattern="/^#[a-zа-яё0-9]{1,19}$/i">
+                  <div class="img-upload__field-wrapper form-group">
+                    <input
+                      class="text__hashtags form-control"
+                      name="hashtags"
+                      placeholder="#ХэшТег"
+                      pattern="/^#[#\sa-zа-яё0-9]{1,19}$/i"
+                      data-pristine-pattern-message="Некорректный формат"
+                    >
                   </div>
-                  <div class="img-upload__field-wrapper">
-                    <textarea class="text__description" name="description" placeholder="Ваш комментарий..." maxlength="140"></textarea>
+                  <div class="img-upload__field-wrapper form-group">
+                    <textarea
+                      class="text__description form-control"
+                      name="description"
+                      placeholder="Ваш комментарий..."
+                      data-pristine-maxlength="140"
+                      data-pristine-maxlength-message="Ограничение 140 символов"
+                    ></textarea>
                   </div>
                 </fieldset>
 
